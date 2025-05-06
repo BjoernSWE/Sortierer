@@ -28,7 +28,7 @@ public class App {
 
         Ausgabe.mergeSort();
         mergeSortierer mergesorter = new mergeSortierer(jahreszahlen);
-        Ausgabe.liste(mergesorter.sortiere(jahreszahlen));
+        mergesorter.sortiere(jahreszahlen);
         System.out.println();
     }
 }

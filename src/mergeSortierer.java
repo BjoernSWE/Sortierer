@@ -6,39 +6,57 @@ public class mergeSortierer extends Sortierer {
         super(jahreszahlen);
     }
 
+    @Override
     protected ArrayList<Integer> sortiere(ArrayList<Integer> liste) {
+
+        long startTime = System.currentTimeMillis();
+
+        ArrayList<Integer> sortedList = mergeSortHelper(liste);
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+
+        Ausgabe.liste(sortedList);
+        Ausgabe.zeit(duration);
+
+        return sortedList;
+    }
+
+    private ArrayList<Integer> mergeSortHelper(ArrayList<Integer> liste) {
         if (liste.size() <= 1) {
             return liste;
         }
 
         int mid = liste.size() / 2;
-
         ArrayList<Integer> left = new ArrayList<>(liste.subList(0, mid));
         ArrayList<Integer> right = new ArrayList<>(liste.subList(mid, liste.size()));
 
-        left = sortiere(left);
-        right = sortiere(right);
+        left = mergeSortHelper(left);
+        right = mergeSortHelper(right);
 
         return merge(left, right);
     }
 
-    private static ArrayList<Integer> merge(ArrayList<Integer> left, ArrayList<Integer> right) {
-        ArrayList<Integer> result = new ArrayList<>();
-        int i = 0, j = 0;
+    private ArrayList<Integer> merge(ArrayList<Integer> left, ArrayList<Integer> right) {
+        ArrayList<Integer> merged = new ArrayList<>();
+        int leftIndex = 0, rightIndex = 0;
 
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i) <= right.get(j)) {
-                result.add(left.get(i++));
+        while (leftIndex < left.size() && rightIndex < right.size()) {
+            if (left.get(leftIndex) <= right.get(rightIndex)) {
+                merged.add(left.get(leftIndex++));
             } else {
-                result.add(right.get(j++));
+                merged.add(right.get(rightIndex++));
             }
         }
 
-        while (i < left.size())
-            result.add(left.get(i++));
-        while (j < right.size())
-            result.add(right.get(j++));
+        while (leftIndex < left.size()) {
+            merged.add(left.get(leftIndex++));
+        }
 
-        return result;
+        while (rightIndex < right.size()) {
+            merged.add(right.get(rightIndex++));
+        }
+
+        return merged;
     }
 }

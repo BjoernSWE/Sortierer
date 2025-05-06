@@ -9,28 +9,31 @@ public class quickSortierer extends Sortierer {
 
     protected ArrayList<Integer> sortiere(ArrayList<Integer> liste) {
         long start = System.currentTimeMillis();
-        long end = 0;
-        long Dauer = 0;
-        int links = 0;
-        int rechts = liste.size() - 1;
-        int pivot = liste.get(liste.size() / 2);
-        do {
-            while (liste.get(links) < pivot) {
-                links++;
-            }
-            while (liste.get(rechts) > pivot) {
-                rechts--;
-            }
-            if (links <= rechts) {
-                Collections.swap(liste, links, rechts);
-                links++;
-                rechts--;
-            }
-        } while (links <= rechts);
-        end = System.currentTimeMillis();
-        Dauer = getOperations(start, end);
+        quickSort(liste, 0, liste.size() - 1);
+        long end = System.currentTimeMillis();
         Ausgabe.liste(liste);
-        Ausgabe.zeit(Dauer);
+        Ausgabe.zeit(end - start);
         return liste;
+    }
+
+    private void quickSort(ArrayList<Integer> liste, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(liste, low, high);
+            quickSort(liste, low, pivotIndex - 1);
+            quickSort(liste, pivotIndex + 1, high);
+        }
+    }
+
+    private int partition(ArrayList<Integer> liste, int low, int high) {
+        int pivot = liste.get(high);
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (liste.get(j) < pivot) {
+                i++;
+                Collections.swap(liste, i, j);
+            }
+        }
+        Collections.swap(liste, i + 1, high);
+        return i + 1;
     }
 }
