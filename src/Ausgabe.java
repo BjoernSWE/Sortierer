@@ -5,15 +5,12 @@ public class Ausgabe {
     public static void liste(ArrayList<Integer> jahreszahlen) {
         int zaehler = 0;
 
-        for (Integer zahl : jahreszahlen) {
-            System.out.print(zahl + " ");
-            zaehler++;
-
-            if (zaehler % 30 == 0) {
+        for (int i = 0; i < jahreszahlen.size(); i++) {
+            System.out.print(jahreszahlen.get(i) + " ");
+            if ((i + 1) % 30 == 0) {
                 System.out.println();
             }
         }
-
         System.out.println();
     }
 
@@ -30,6 +27,7 @@ public class Ausgabe {
     }
 
     public static void zeit(long Dauer) {
-        System.out.println("Sortierung dauerte: " + Dauer + "ms");
+        double dauer = Dauer / 1000.0;
+        System.out.println("Sortierung dauerte: " + dauer + "s");
     }
 }

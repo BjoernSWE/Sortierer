@@ -8,6 +8,9 @@ public class quickSortierer extends Sortierer {
     }
 
     protected ArrayList<Integer> sortiere(ArrayList<Integer> liste) {
+        long start = System.currentTimeMillis();
+        long end = 0;
+        long Dauer = 0;
         int links = 0;
         int rechts = liste.size() - 1;
         int pivot = liste.get(liste.size() / 2);
@@ -24,7 +27,10 @@ public class quickSortierer extends Sortierer {
                 rechts--;
             }
         } while (links <= rechts);
+        end = System.currentTimeMillis();
+        Dauer = getOperations(start, end);
         Ausgabe.liste(liste);
+        Ausgabe.zeit(Dauer);
         return liste;
     }
 }

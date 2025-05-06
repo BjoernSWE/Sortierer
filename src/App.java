@@ -12,8 +12,8 @@ public class App {
             jahreszahlen.add(jahr);
         }
 
+        System.out.println("Unsortierte Liste:");
         Ausgabe.liste(jahreszahlen);
-
         System.out.println();
 
         Ausgabe.insertSort();
@@ -24,6 +24,11 @@ public class App {
         Ausgabe.quickSort();
         quickSortierer quicksorter = new quickSortierer(jahreszahlen);
         quicksorter.sortiere(jahreszahlen);
+        System.out.println();
+
+        Ausgabe.mergeSort();
+        mergeSortierer mergesorter = new mergeSortierer(jahreszahlen);
+        Ausgabe.liste(mergesorter.sortiere(jahreszahlen));
         System.out.println();
     }
 }
