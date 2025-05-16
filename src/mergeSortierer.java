@@ -16,7 +16,7 @@ public class mergeSortierer extends Sortierer {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        Ausgabe.liste(sortedList);
+        // Ausgabe.liste(sortedList);
         Ausgabe.zeit(duration);
 
         return sortedList;
