@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class App {
     public static void main(String[] args) throws Exception {
         ArrayList<Integer> jahreszahlen = new ArrayList<>();
-        int anzahl = 500;
+        int anzahl = 5000;
         int min = 1900;
         int max = 2013;
 
